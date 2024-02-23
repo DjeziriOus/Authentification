@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-AuthentificationApplication<Authentification>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.ACSI.Authentification.AuthentificationApplication",
+      "projectName": "Authentification",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
