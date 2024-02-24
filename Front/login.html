@@ -17,11 +17,11 @@
           <form action="#" class="sign-in-form">
             <h2 class="title">Sign in</h2>
 
-            <div class="input-field">
+            <div class="input-field" id="login-email">
               <i class="fas fa-user"></i>
               <input type="text" placeholder="Email" id="email1" />
             </div>
-            <div class="input-field">
+            <div class="input-field" id="login-password">
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" id="pass" />
             </div>
@@ -68,12 +68,14 @@
               <i class="fas fa-lock"></i>
               <input type="password" id="password" placeholder="Password" />
             </div>
-            <div class="error" id="signup-error">
-              <i class="fas fa-exclamation-circle"></i>
-              <p>
-                Email address already used.<br />
-                Please Try again !
-              </p>
+            <div class="error-container">
+              <div class="error" id="signup-error">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>
+                  Email address already used.<br />
+                  Please Try again !
+                </p>
+              </div>
             </div>
             <input type="submit" class="btn" value="Sign up" id="Signup-btn" />
             <p class="social-text hidden">Or Sign up with social platforms</p>

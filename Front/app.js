@@ -73,10 +73,12 @@ SignUpbtn.addEventListener("click", (e) => {
         console.log(document.querySelector("#signup-error p "));
         //1. changer le message de la balise d'erreur
         document.querySelector("#signup-error p ").innerHTML =
-          "<b>Missing fields</b> Please fill all of the form's fields";
+          "<b>Missing fields</b> Please fill all of the form's fields.";
         document.querySelector("#signup-error").style.opacity = 1;
       } else {
-        //erreur côté backend:
+        ////////////////
+        //erreur côté backend :
+        //////////////
 
         //reseting everything:
         //resetting color:
@@ -85,7 +87,7 @@ SignUpbtn.addEventListener("click", (e) => {
         });
         //resetting the displayed error message:
         document.querySelector("#signup-error p ").innerHTML =
-          "Email address already used.<br>Please Try again !";
+          "<b>Email address already used.</b>Please try logging in with it or use another Email Address.";
         if (!data.result) {
           document.querySelector("#email-field").classList.add("wrong");
           document.querySelector("#signup-error").style.opacity = 1;
@@ -94,7 +96,7 @@ SignUpbtn.addEventListener("click", (e) => {
             .querySelectorAll(".sign-up-form .input-field")
             .forEach((e) => e.classList.remove("wrong"));
           document.querySelector("#signup-error").style.opacity = 0;
-          // window.location.href = "dashboard.html";
+          window.location.href = "welcome.html";
         }
       }
     })
@@ -109,20 +111,80 @@ SignInbtn.addEventListener("click", (e) => {
   const password = document.getElementById("pass").value;
   console.log(email, password);
 
-  sendData("http://localhost:8081/auth", { email: email, password: password })
+  // TODO: refactoring errorDisplaying
+  // const errorDisplaying = function (
+  //   login,
+  //   user,
+  //   email,
+  //   password,
+  //   errorMessage
+  // ) {
+  //   if (login) {
+  //     if(user){
+
+  //     }
+  //   }else{
+  //   }
+  // };
+
+  sendData("http://localhost:8081/auth", {
+    email: email,
+    password: password,
+  })
     .then((data) => {
+      //resetting colors
+      document
+        .querySelectorAll(".sign-in-form .input-field")
+        .forEach((e) => e.classList.remove("wrong"));
+      //hiding the error message
+      document.querySelector("#login-error").style.opacity = 0;
       console.log(data);
-      if (!data.result) {
-        document
-          .querySelectorAll(".sign-in-form .input-field")
-          .forEach((e) => e.classList.add("wrong"));
+      if (email == "" && password == "") {
+        //coloring with red the email field
+        document.querySelector("#login-email").classList.add("wrong");
+        document.querySelector("#login-password").classList.add("wrong");
+        //changing the error message to say the correct error message
+        document.querySelector("#login-error p ").innerHTML =
+          "<b>Empty Fields</b> Please fill the Email & passwords fields and retry.";
+        //displaying the error message on the page
         document.querySelector("#login-error").style.opacity = 1;
-        // .classList.add("wrong");
-      } else {
-        document
-          .querySelectorAll(".sign-in-form .input-field")
-          .forEach((e) => e.classList.remove("wrong"));
-        document.querySelector("#login-error").style.opacity = 0;
+      } else if (email == "") {
+        //coloring with red the email field
+        document.querySelector("#login-email").classList.add("wrong");
+        //changing the error message to say the correct error message
+        document.querySelector("#login-error p ").innerHTML =
+          "<b>Empty Field</b> Please fill the Email field and retry.";
+        //displaying the error message on the page
+        document.querySelector("#login-error").style.opacity = 1;
+      } else if (password == "") {
+        //coloring with red the password field
+        document.querySelector("#login-password").classList.add("wrong");
+        //changing the error message to say the correct error message
+        document.querySelector("#login-error p ").innerHTML =
+          "<b>Empty Field</b> Please fill the password field and retry.";
+        //displaying the error message on the page
+        document.querySelector("#login-error").style.opacity = 1;
+        // first case: mail exists:
+      } else if (data.mailExists && !data.result) {
+        console.log("mail exists");
+        //coloring with red the password field
+        document.querySelector("#login-password").classList.add("wrong");
+        //changing the error message to say the correct error message
+        document.querySelector("#login-error p").innerHTML =
+          "<b>Invalid Password</b> Please re-enter your password and try again.";
+        //displaying the error message on the page
+        document.querySelector("#login-error").style.opacity = 1;
+      } else if (!data.mailExists && !data.result) {
+        //coloring with red the email field
+        document.querySelector("#login-email").classList.add("wrong");
+        //changing the error message to say the correct error message
+        document.querySelector("#login-error p ").innerHTML =
+          "<b>Invalid Email</b>An Account with the Email you introduced doesn't exist";
+        //displaying the error message on the page
+        document.querySelector("#login-error").style.opacity = 1;
+      } else if (data.result) {
+        console.log("here");
+        //redirecting to the dashboard
         window.location.href = "dashboard.html";
       }
     })
