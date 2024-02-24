@@ -14,7 +14,6 @@ public class AuthService{
 
     public boolean authentifier(String mail,String password)
     {
-
         String stored_password=authModel.getPassword(mail);
         if(stored_password.isEmpty())
             return false;
@@ -25,8 +24,8 @@ public class AuthService{
     public boolean signIn(String password,String mail,String name)
     {
         if (!authModel.verify(mail))
-            return false;
-
+            return false;    
+        if (password == ""|| name == "") return false;
         return authModel.insert(mail,name,password);
     }
 }

@@ -16,6 +16,7 @@
         <div class="signin-signup">
           <form action="#" class="sign-in-form">
             <h2 class="title">Sign in</h2>
+
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" placeholder="Email" id="email1" />
@@ -24,14 +25,21 @@
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" id="pass" />
             </div>
+            <div class="error" id="login-error">
+              <i class="fas fa-exclamation-circle"></i>
+              <p>
+                Invalid Email address or Password <br />
+                Please Try again !
+              </p>
+            </div>
             <input
               type="submit"
               value="Login"
               class="btn solid"
               id="Signin-btn"
             />
-            <p class="social-text">Or Sign in with social platforms</p>
-            <div class="social-media">
+            <p class="social-text hidden">Or Sign in with social platforms</p>
+            <div class="social-media hidden">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
@@ -52,7 +60,7 @@
               <i class="fas fa-user"></i>
               <input type="text" placeholder="Username" id="name" />
             </div>
-            <div class="input-field">
+            <div class="input-field" id="email-field">
               <i class="fas fa-envelope"></i>
               <input type="email" id="email" placeholder="Email" />
             </div>
@@ -60,9 +68,16 @@
               <i class="fas fa-lock"></i>
               <input type="password" id="password" placeholder="Password" />
             </div>
+            <div class="error" id="signup-error">
+              <i class="fas fa-exclamation-circle"></i>
+              <p>
+                Email address already used.<br />
+                Please Try again !
+              </p>
+            </div>
             <input type="submit" class="btn" value="Sign up" id="Signup-btn" />
-            <p class="social-text">Or Sign up with social platforms</p>
-            <div class="social-media">
+            <p class="social-text hidden">Or Sign up with social platforms</p>
+            <div class="social-media hidden">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>

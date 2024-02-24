@@ -44,6 +44,10 @@ SignUpbtn.addEventListener("click", (e) => {
   const password = document.getElementById("password").value;
   console.log(name, email, password);
 
+  // les champs ne sont pas tous remplis:
+  if (!name || !email || !password) {
+  }
+
   sendData("http://localhost:8081/signUp", {
     name: name,
     email: email,
@@ -51,6 +55,48 @@ SignUpbtn.addEventListener("click", (e) => {
   })
     .then((data) => {
       console.log(data);
+      //pre-reset:
+      document.querySelectorAll(".sign-up-form .input-field").forEach((e) => {
+        e.classList.remove("wrong");
+      });
+      // les champs ne sont pas tous remplis:
+      if (!name || !email || !password) {
+        console.log(name, email, password);
+        document.querySelectorAll(".sign-up-form .input-field").forEach((e) => {
+          // console.log(e.querySelector("input").value);
+          if (e.querySelector("input").value === "") {
+            e.classList.add("wrong");
+            console.log("added class wrong to ", e);
+          }
+        });
+        console.log("not all filled");
+        console.log(document.querySelector("#signup-error p "));
+        //1. changer le message de la balise d'erreur
+        document.querySelector("#signup-error p ").innerHTML =
+          "<b>Missing fields</b> Please fill all of the form's fields";
+        document.querySelector("#signup-error").style.opacity = 1;
+      } else {
+        //erreur côté backend:
+
+        //reseting everything:
+        //resetting color:
+        document.querySelectorAll(".sign-up-form .input-field").forEach((e) => {
+          e.classList.remove("wrong");
+        });
+        //resetting the displayed error message:
+        document.querySelector("#signup-error p ").innerHTML =
+          "Email address already used.<br>Please Try again !";
+        if (!data.result) {
+          document.querySelector("#email-field").classList.add("wrong");
+          document.querySelector("#signup-error").style.opacity = 1;
+        } else {
+          document
+            .querySelectorAll(".sign-up-form .input-field")
+            .forEach((e) => e.classList.remove("wrong"));
+          document.querySelector("#signup-error").style.opacity = 0;
+          // window.location.href = "dashboard.html";
+        }
+      }
     })
     .catch((error) => {
       console.error("Erreur:", error);
@@ -66,6 +112,19 @@ SignInbtn.addEventListener("click", (e) => {
   sendData("http://localhost:8081/auth", { email: email, password: password })
     .then((data) => {
       console.log(data);
+      if (!data.result) {
+        document
+          .querySelectorAll(".sign-in-form .input-field")
+          .forEach((e) => e.classList.add("wrong"));
+        document.querySelector("#login-error").style.opacity = 1;
+        // .classList.add("wrong");
+      } else {
+        document
+          .querySelectorAll(".sign-in-form .input-field")
+          .forEach((e) => e.classList.remove("wrong"));
+        document.querySelector("#login-error").style.opacity = 0;
+        window.location.href = "dashboard.html";
+      }
     })
     .catch((error) => {
       console.error("Erreur:", error);
