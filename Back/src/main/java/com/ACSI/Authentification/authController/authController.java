@@ -2,6 +2,7 @@ package com.ACSI.Authentification.authController;
 
 import com.ACSI.Authentification.AuthService.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Window;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,11 +11,11 @@ public class authController {
     @Autowired
     AuthService authService;
     @PostMapping("/auth")
-    public Result authentifier(@RequestBody AuthRequest authRequest){
+    public LogInResultObj authentifier(@RequestBody AuthRequest authRequest){
         System.out.println("kamil");
-        boolean result=authService.authentifier(authRequest.getEmail(),authRequest.getPassword());
-        Result result1=new Result(result);
-        return result1;
+        LogInResultObj resultObj = new LogInResultObj(authService.authentifier(authRequest.getEmail(),authRequest.getPassword()).isResult() , authService.authentifier(authRequest.getEmail(),authRequest.getPassword()).isMailExists());
+        System.out.println(resultObj.isResult());
+        return resultObj;
     }
     @GetMapping("/sendMAil")
     public String sendCode()
@@ -24,10 +25,10 @@ public class authController {
     @PostMapping("/signUp")
     public Result signIn(@RequestBody SignUpRequest signUpRequest)
     {
-        boolean result= authService.signIn(signUpRequest.getPassword(),signUpRequest.getEmail(),
+        boolean resultBoolean= authService.signIn(signUpRequest.getPassword(),signUpRequest.getEmail(),
                 signUpRequest.getName());
-        Result result1=new Result(result);
-        return result1;
+        Result frontendResult=new Result(resultBoolean);
+        return frontendResult;
     }
     static class AuthRequest {
         private String email;
@@ -88,6 +89,34 @@ public class authController {
         Result(boolean result)
         {
             this.result=result;
+        }
+    }
+    // public class resultObj{
+    //     boolean result;  
+    //     boolean mailExists;
+    //     public resultObj(boolean result, boolean mailExists) {
+    //         this.result = result;
+    //         this.mailExists = mailExists;
+    //     }
+    // }
+    public class LogInResultObj{
+        boolean result;  
+        boolean mailExists;
+        public LogInResultObj(boolean result, boolean mailExists) {
+            this.result = result;
+            this.mailExists = mailExists;
+        }
+        public boolean isResult() {
+            return result;
+        }
+        public void setResult(boolean result) {
+            this.result = result;
+        }
+        public boolean isMailExists() {
+            return mailExists;
+        }
+        public void setMailExists(boolean mailExists) {
+            this.mailExists = mailExists;
         }
     }
 }

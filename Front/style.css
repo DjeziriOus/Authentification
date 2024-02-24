@@ -287,12 +287,20 @@ form.sign-in-form {
   color: #fc4d4d;
 }
 
+.error-container {
+  height: 200px;
+  width: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+}
 .error {
-  max-width: 380px;
-  width: 100%;
+  margin: 10px 0;
+  width: 380px;
   background-color: #f0f0f0;
   border: 2px solid #ff2c2c;
-  border-radius: 1000px;
+  border-radius: 30px;
   display: grid;
   grid-template-columns: 14% 86%;
   padding: 0.4rem 0.4rem;
@@ -302,11 +310,11 @@ form.sign-in-form {
 .error i {
   line-height: 34px;
   color: #fc4d4d;
-  transition: 0.5s;
   font-size: 1.35rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.5s;
 }
 .error p {
   font-weight: 500;
@@ -316,9 +324,11 @@ form.sign-in-form {
   align-items: start;
   justify-content: start;
   font-size: 1.1rem;
+  transition: all 0.5s;
 }
+
 .hidden {
-  opacity: 0;
+  display: none;
 }
 
 @media (max-width: 870px) {

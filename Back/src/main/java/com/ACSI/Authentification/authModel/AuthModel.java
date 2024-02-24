@@ -16,7 +16,10 @@ public class AuthModel {
     public String getPassword(String mail)
     {
         try {
+            //1. Registering the Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
+
+            //2. create a Connection
             connection = DriverManager.getConnection(url, username, password);
 
             // 3. Create a statement
