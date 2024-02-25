@@ -48,7 +48,7 @@ SignUpbtn.addEventListener("click", (e) => {
   if (!name || !email || !password) {
   }
 
-  sendData("http://localhost:8081/signUp", {
+  sendData("http://localhost:8080/signUp", {
     name: name,
     email: email,
     password: password,
@@ -127,7 +127,7 @@ SignInbtn.addEventListener("click", (e) => {
   //   }
   // };
 
-  sendData("http://localhost:8081/auth", {
+  sendData("http://localhost:8080/auth", {
     email: email,
     password: password,
   })

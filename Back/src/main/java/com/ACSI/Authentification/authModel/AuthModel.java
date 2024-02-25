@@ -11,7 +11,7 @@ public class AuthModel {
     ResultSet resultSet=null;
     Statement statement=null;
     String username="root";
-    String password="134969";
+    String password="123";
     String url="jdbc:mysql://localhost:3306/acsi";
     public String getPassword(String mail)
     {
