@@ -1,7 +1,8 @@
 package com.ACSI.Authentification.AuthService;
 
-import com.ACSI.Authentification.authController.authController;
 import com.ACSI.Authentification.authModel.AuthModel;
+import com.ACSI.Authentification.controllers.authController;
+
 import org.apache.tomcat.util.buf.UEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

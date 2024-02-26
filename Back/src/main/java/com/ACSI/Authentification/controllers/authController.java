@@ -1,15 +1,21 @@
-package com.ACSI.Authentification.authController;
+package com.ACSI.Authentification.controllers;
 
 import com.ACSI.Authentification.AuthService.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Window;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
+// @RestController
 @RestController
 @CrossOrigin(origins = "*")
 public class authController {
     @Autowired
     AuthService authService;
+
+    // @Autowired
+
     @PostMapping("/auth")
     public LogInResultObj authentifier(@RequestBody AuthRequest authRequest){
         System.out.println("kamil");

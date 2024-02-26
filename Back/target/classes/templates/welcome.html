@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Dashboard Page</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+      }
+
+      .panel {
+        /* max-height: 250px; */
+        margin-top: 5rem;
+        max-width: 500px;
+        text-align: center;
+        background-color: #5995fd;
+        /* border: 5px solid #5995fd; */
+        border-radius: 60px;
+        padding: 50px;
+        gap: 10px;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.274);
+        transform: translateY(-150px);
+        display: flex;
+        flex-direction: column;
+      }
+      .panel h2 {
+        /* color: #4caf50; */
+        color: #fff;
+
+        font-size: 30px;
+        font-weight: 700;
+      }
+      .panel p {
+        font-size: 20px;
+        color: #fff;
+      }
+      .panel i {
+        /* color: #33c758; */
+        color: #00f715;
+        margin-bottom: 40px;
+        font-size: 75px;
+      }
+      .return {
+        width: 150px;
+        background-color: #5995fd;
+        border: none;
+        outline: none;
+        height: 49px;
+        border-radius: 49px;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 10px 0;
+        cursor: pointer;
+        transition: 0.4s;
+      }
+
+      .return:hover {
+        /* background-color: #4372c4; */
+        /* color: #5995fd;
+        background-color: #fff; */
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.199);
+        transform: translateY(-5px);
+      }
+
+      .return:active {
+        color: #5995fd;
+        background-color: #fff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.199);
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="panel">
+      <!-- <div class="checkmark">&#10004;</div> -->
+      <i class="fas fa-check-circle"></i>
+      <h2>Connection Successful!</h2>
+      <p>You have successfully created an account, welcome to the Platform!</p>
+    </div>
+    <button class="return">Return to Login</button>
+  </body>
+  <script>
+    document.querySelector(".return").addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.href = "/";
+    });
+  </script>
+</html>
