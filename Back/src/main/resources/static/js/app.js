@@ -17,6 +17,23 @@ sign_in_btn.addEventListener("click", () => {
 });
 
 /////////
+//la function de validation demail
+/////////
+
+function validateEmail(id) {
+  var emailInput = document.getElementById(id);
+  var email = emailInput.value.trim();
+  // Regular expression for basic email validation
+  var emailRegex = /\S+@\S+\.\S+/;
+
+  if (emailRegex.test(email)) {
+    return true;
+  } else {
+    false;
+  }
+}
+
+/////////
 //la function de post
 /////////
 function sendData(url, data) {
@@ -45,8 +62,8 @@ SignUpbtn.addEventListener("click", (e) => {
   console.log(name, email, password);
 
   // les champs ne sont pas tous remplis:
-  if (!name || !email || !password) {
-  }
+  document.querySelector("#signup-error").style.opacity = 0;
+  document.querySelector("#email-field").classList.remove("wrong");
 
   sendData("http://localhost:8080/signUp", {
     name: name,
@@ -74,6 +91,11 @@ SignUpbtn.addEventListener("click", (e) => {
         //1. changer le message de la balise d'erreur
         document.querySelector("#signup-error p ").innerHTML =
           "<b>Missing fields</b> Please fill all of the form's fields.";
+        document.querySelector("#signup-error").style.opacity = 1;
+      } else if (!validateEmail("email")) {
+        document.querySelector("#signup-error p ").innerHTML =
+          "<b>Invalid email format</b> Please enter a valid email address.";
+        document.querySelector("#email-field").classList.add("wrong");
         document.querySelector("#signup-error").style.opacity = 1;
       } else {
         ////////////////
